@@ -1,0 +1,39 @@
+name: Build and release tweaks
+
+on:
+  push:
+    branches: [master, main]
+
+jobs:
+  build-and-release:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          submodules: recursive
+      - name: Install Dependencies
+        run: brew install ldid dpkg make
+
+      - name: Set PATH environment variable
+        run: echo "$(brew --prefix make)/libexec/gnubin" >> $GITHUB_PATH
+
+      - name: Setup Theos
+        uses: actions/checkout@v4
+        with:
+          repository: theos/theos
+          ref: master
+          path: theos
+          submodules: recursive
+      - name: Build all tweaks to lib/
+        run: |
+          make
+        env:
+          THEOS: ${{ github.workspace }}/theos
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: tweaks
+          path: lib/
+      - name: Publish for tagged releases
+        uses: softprops/action-gh-release@v2
+        if: github.ref_type == 'tag'

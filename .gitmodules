@@ -1,0 +1,3 @@
+[submodule "flex/vendor/FLEX"]
+	path = flex/vendor/FLEX
+	url = git@github.com:FLEXTool/FLEX.git

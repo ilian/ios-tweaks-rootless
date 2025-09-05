@@ -20,3 +20,9 @@
 }
 %end
 
+%hook ALSdk
+- (void)initializeWithConfiguration:(id)config
+                 completionHandler:(id)completionHandler {
+    return;
+}
+%end

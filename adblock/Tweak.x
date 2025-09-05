@@ -8,15 +8,3 @@
 - (void)startWithCompletionHandler:(id)completionHandler {}
 
 %end
-
-// AppLovin
-
-%hook ALSdk
-- (void)initializeWithConfiguration:(id)config
-                 completionHandler:(id)completionHandler {}
-%end
-
-%hook MAAdView
-- (void)loadAd {}
-%end
-

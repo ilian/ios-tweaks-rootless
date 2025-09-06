@@ -1,5 +1,5 @@
-.PHONY: all flex flex-launcher hide-dyld
-TWEAKS := flex flex-launcher hide-dyld
+.PHONY: all flex flex-launcher hide-dyld adblock
+TWEAKS := flex flex-launcher hide-dyld adblock
 
 all: $(TWEAKS)
 
